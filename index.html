@@ -1,0 +1,667 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>New Roots Canada – Find Help, Agents & Cost of Living</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <style>
+    :root {
+      --primary: #2563eb;
+      --primary-light: #dbeafe;
+      --bg: #f3f4f6;
+      --text: #111827;
+      --muted: #6b7280;
+      --card: #ffffff;
+      --radius: 10px;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.5;
+    }
+
+    header {
+      background: #ffffff;
+      border-bottom: 1px solid #e5e7eb;
+      position: sticky;
+      top: 0;
+      z-index: 10;
+    }
+
+    .nav {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 0.75rem 1rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .logo {
+      font-weight: 700;
+      font-size: 1.1rem;
+      color: var(--primary);
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 1rem;
+      font-size: 0.95rem;
+    }
+
+    .nav-links a {
+      text-decoration: none;
+      color: var(--muted);
+      cursor: pointer;
+    }
+
+    .nav-links a:hover {
+      color: var(--primary);
+    }
+
+    main {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 1.5rem 1rem 3rem;
+    }
+
+    .hero {
+      display: grid;
+      grid-template-columns: minmax(0, 2fr) minmax(0, 1.5fr);
+      gap: 2rem;
+      align-items: center;
+      margin-top: 1.5rem;
+      margin-bottom: 2.5rem;
+    }
+
+    .hero h1 {
+      font-size: 2.2rem;
+      margin-bottom: 0.75rem;
+    }
+
+    .hero p {
+      color: var(--muted);
+      margin-bottom: 1rem;
+    }
+
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      background: var(--primary-light);
+      color: var(--primary);
+      padding: 0.25rem 0.6rem;
+      border-radius: 999px;
+      font-size: 0.8rem;
+      margin-bottom: 0.75rem;
+    }
+
+    .hero-card {
+      background: var(--card);
+      border-radius: var(--radius);
+      padding: 1.25rem;
+      box-shadow: 0 10px 25px rgba(15, 23, 42, 0.08);
+    }
+
+    .hero-card h2 {
+      font-size: 1.1rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .hero-card p {
+      font-size: 0.9rem;
+      color: var(--muted);
+      margin-bottom: 0.75rem;
+    }
+
+    .hero-card ul {
+      list-style: none;
+      font-size: 0.9rem;
+      color: var(--muted);
+    }
+
+    .hero-card li::before {
+      content: "• ";
+      color: var(--primary);
+    }
+
+    .section {
+      margin-top: 2.5rem;
+    }
+
+    .section-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      margin-bottom: 1rem;
+      gap: 1rem;
+    }
+
+    .section-header h2 {
+      font-size: 1.4rem;
+    }
+
+    .section-header p {
+      font-size: 0.9rem;
+      color: var(--muted);
+    }
+
+    .card {
+      background: var(--card);
+      border-radius: var(--radius);
+      padding: 1.25rem;
+      box-shadow: 0 8px 20px rgba(15, 23, 42, 0.06);
+    }
+
+    label {
+      display: block;
+      font-size: 0.85rem;
+      margin-bottom: 0.25rem;
+      color: var(--muted);
+    }
+
+    select,
+    input,
+    button {
+      font-size: 0.9rem;
+    }
+
+    select,
+    input[type="number"],
+    input[type="email"] {
+      width: 100%;
+      padding: 0.5rem 0.6rem;
+      border-radius: 6px;
+      border: 1px solid #d1d5db;
+      margin-bottom: 0.75rem;
+      outline: none;
+    }
+
+    select:focus,
+    input:focus {
+      border-color: var(--primary);
+      box-shadow: 0 0 0 1px var(--primary-light);
+    }
+
+    button {
+      border: none;
+      border-radius: 999px;
+      padding: 0.55rem 1.1rem;
+      background: var(--primary);
+      color: #ffffff;
+      cursor: pointer;
+      font-weight: 500;
+    }
+
+    button.secondary {
+      background: #e5e7eb;
+      color: #111827;
+    }
+
+    button:disabled {
+      opacity: 0.6;
+      cursor: not-allowed;
+    }
+
+    .grid-2 {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 1.5rem;
+    }
+
+    .result-box {
+      background: #f9fafb;
+      border-radius: 8px;
+      padding: 0.75rem 0.9rem;
+      font-size: 0.9rem;
+    }
+
+    .result-box strong {
+      display: block;
+      margin-bottom: 0.25rem;
+    }
+
+    .pill {
+      display: inline-flex;
+      padding: 0.15rem 0.5rem;
+      border-radius: 999px;
+      font-size: 0.75rem;
+      background: #e5e7eb;
+      color: #374151;
+      margin-right: 0.25rem;
+    }
+
+    .agent-list {
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+      margin-top: 0.5rem;
+      max-height: 260px;
+      overflow-y: auto;
+    }
+
+    .agent-card {
+      border-radius: 8px;
+      border: 1px solid #e5e7eb;
+      padding: 0.75rem 0.9rem;
+      background: #ffffff;
+    }
+
+    .agent-card h3 {
+      font-size: 0.95rem;
+      margin-bottom: 0.15rem;
+    }
+
+    .agent-card p {
+      font-size: 0.8rem;
+      color: var(--muted);
+      margin-bottom: 0.15rem;
+    }
+
+    .agent-tagline {
+      font-size: 0.8rem;
+      color: #111827;
+    }
+
+    .newsletter {
+      display: grid;
+      grid-template-columns: minmax(0, 2fr) minmax(0, 1.5fr);
+      gap: 1.5rem;
+      align-items: center;
+    }
+
+    .newsletter small {
+      font-size: 0.8rem;
+      color: var(--muted);
+    }
+
+    footer {
+      border-top: 1px solid #e5e7eb;
+      padding: 1rem;
+      text-align: center;
+      font-size: 0.8rem;
+      color: var(--muted);
+      margin-top: 2rem;
+    }
+
+    @media (max-width: 900px) {
+      .hero,
+      .newsletter,
+      .grid-2 {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="nav">
+      <div class="logo">New Roots Canada</div>
+      <div class="nav-links">
+        <a href="#cost-of-living">Cost of Living</a>
+        <a href="#agents">Find Agents</a>
+        <a href="#newsletter">Free Updates</a>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <!-- HERO -->
+    <section class="hero">
+      <div>
+        <div class="badge">For newcomers, renters & immigration help</div>
+        <h1>Land in Canada with clarity, not confusion.</h1>
+        <p>
+          Check real‑world cost of living, discover local rental & immigration‑friendly agents,
+          and get simple guidance for your first steps in Canada.
+        </p>
+        <p style="font-size:0.9rem; color:var(--muted);">
+          Start free. No signup required for the tools below.
+        </p>
+      </div>
+      <div class="hero-card">
+        <h2>What you can do here today</h2>
+        <p>Use these free tools to plan your move or next rental step:</p>
+        <ul>
+          <li>Estimate monthly cost of living by Canadian city</li>
+          <li>Find agents who understand newcomers & renters</li>
+          <li>Join our list to get city guides & immigration‑friendly tips</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- COST OF LIVING -->
+    <section id="cost-of-living" class="section">
+      <div class="section-header">
+        <div>
+          <h2>Cost of living estimator</h2>
+          <p>Choose a city and household size to see an estimated monthly budget.</p>
+        </div>
+        <span class="pill">Free tool</span>
+      </div>
+
+      <div class="card grid-2">
+        <div>
+          <label for="citySelect">City in Canada</label>
+          <select id="citySelect">
+            <option value="">Select a city</option>
+          </select>
+
+          <label for="householdSize">Household size (people)</label>
+          <input
+            id="householdSize"
+            type="number"
+            min="1"
+            max="8"
+            value="1"
+          />
+
+          <button id="estimateBtn">Estimate monthly cost</button>
+          <p style="font-size:0.8rem; color:var(--muted); margin-top:0.5rem;">
+            These are rough estimates based on typical rent, groceries & transport.
+            Always double‑check before signing a lease.
+          </p>
+        </div>
+
+        <div class="result-box" id="costResult">
+          <strong>Start by selecting a city.</strong>
+          <span style="font-size:0.85rem; color:var(--muted);">
+            We'll show a breakdown of rent, groceries, transport and a total estimate.
+          </span>
+        </div>
+      </div>
+    </section>
+
+    <!-- FIND AGENTS -->
+    <section id="agents" class="section">
+      <div class="section-header">
+        <div>
+          <h2>Find newcomer‑friendly agents by city</h2>
+          <p>These are example agents. Later you can onboard real partners on subscription.</p>
+        </div>
+        <span class="pill">Coming soon: agent subscriptions</span>
+      </div>
+
+      <div class="card">
+        <div class="grid-2">
+          <div>
+            <label for="agentCitySelect">Filter by city</label>
+            <select id="agentCitySelect">
+              <option value="all">All cities</option>
+            </select>
+            <p style="font-size:0.8rem; color:var(--muted); margin-top:0.25rem;">
+              Looking for an agent who understands immigration, renting, or first‑time newcomers?
+              Start here.
+            </p>
+          </div>
+          <div>
+            <label>Agent type</label>
+            <div style="display:flex; gap:0.5rem; flex-wrap:wrap; margin-bottom:0.5rem;">
+              <button class="secondary" data-agent-filter="all">All</button>
+              <button class="secondary" data-agent-filter="rental">Rental</button>
+              <button class="secondary" data-agent-filter="immigration">Immigration‑friendly</button>
+              <button class="secondary" data-agent-filter="newcomer">Newcomer specialist</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="agent-list" id="agentList"></div>
+      </div>
+    </section>
+
+    <!-- NEWSLETTER / LEAD CAPTURE -->
+    <section id="newsletter" class="section">
+      <div class="section-header">
+        <div>
+          <h2>Stay ahead of your move</h2>
+          <p>Get city breakdowns, rental checklists and newcomer‑friendly agent updates.</p>
+        </div>
+      </div>
+
+      <div class="card newsletter">
+        <div>
+          <h3 style="margin-bottom:0.5rem;">Free newcomer & renter updates</h3>
+          <p style="font-size:0.9rem; color:var(--muted); margin-bottom:0.75rem;">
+            No spam. Just practical tips, city comparisons and occasional agent spotlights
+            that can actually help you land on your feet.
+          </p>
+          <small>
+            Later you can connect this form to a real email service (Mailchimp, ConvertKit, Supabase, etc.).
+          </small>
+        </div>
+        <div>
+          <label for="emailInput">Email address</label>
+          <input id="emailInput" type="email" placeholder="you@example.com" />
+          <button id="joinBtn">Join the list</button>
+          <p id="joinMessage" style="font-size:0.8rem; color:var(--muted); margin-top:0.5rem;"></p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    New Roots Canada – built for newcomers, renters & immigration journeys. Future: agent subscriptions & lead routing.
+  </footer>
+
+  <script>
+    // --- Cost of living data (rough example numbers in CAD) ---
+    const cityCostData = [
+      {
+        city: "Toronto, ON",
+        key: "toronto",
+        rentBase: 2100,
+        groceriesBase: 450,
+        transportBase: 160
+      },
+      {
+        city: "Vancouver, BC",
+        key: "vancouver",
+        rentBase: 2200,
+        groceriesBase: 430,
+        transportBase: 150
+      },
+      {
+        city: "Calgary, AB",
+        key: "calgary",
+        rentBase: 1600,
+        groceriesBase: 380,
+        transportBase: 120
+      },
+      {
+        city: "Montreal, QC",
+        key: "montreal",
+        rentBase: 1500,
+        groceriesBase: 360,
+        transportBase: 100
+      },
+      {
+        city: "Halifax, NS",
+        key: "halifax",
+        rentBase: 1500,
+        groceriesBase: 370,
+        transportBase: 110
+      }
+    ];
+
+    const citySelect = document.getElementById("citySelect");
+    const householdSizeInput = document.getElementById("householdSize");
+    const estimateBtn = document.getElementById("estimateBtn");
+    const costResult = document.getElementById("costResult");
+
+    // Populate city dropdown
+    cityCostData.forEach((c) => {
+      const opt = document.createElement("option");
+      opt.value = c.key;
+      opt.textContent = c.city;
+      citySelect.appendChild(opt);
+    });
+
+    estimateBtn.addEventListener("click", () => {
+      const cityKey = citySelect.value;
+      const householdSize = parseInt(householdSizeInput.value || "1", 10);
+
+      if (!cityKey) {
+        costResult.innerHTML =
+          "<strong>Please select a city.</strong><span style='font-size:0.85rem; color:#6b7280;'>We'll show a breakdown once you choose a city.</span>";
+        return;
+      }
+
+      const city = cityCostData.find((c) => c.key === cityKey);
+      const people = Math.max(1, Math.min(householdSize, 8));
+
+      // Simple scaling: rent stays same, groceries & transport scale with people
+      const rent = city.rentBase;
+      const groceries = city.groceriesBase * (0.7 + 0.3 * people);
+      const transport = city.transportBase * (0.7 + 0.3 * people);
+      const other = 300 * (0.7 + 0.3 * people); // phone, internet, misc
+      const total = rent + groceries + transport + other;
+
+      costResult.innerHTML = `
+        <strong>Estimated monthly cost in ${city.city}</strong>
+        <div style="margin-top:0.35rem; font-size:0.9rem;">
+          <div>Household size: <b>${people}</b> people</div>
+          <div>Rent (1–2 bedroom): <b>$${rent.toLocaleString()}</b></div>
+          <div>Groceries: <b>$${Math.round(groceries).toLocaleString()}</b></div>
+          <div>Transport: <b>$${Math.round(transport).toLocaleString()}</b></div>
+          <div>Other essentials: <b>$${Math.round(other).toLocaleString()}</b></div>
+          <hr style="margin:0.5rem 0;" />
+          <div style="font-size:1rem;">Total estimate: <b>$${Math.round(total).toLocaleString()} / month</b></div>
+        </div>
+        <p style="font-size:0.8rem; color:#6b7280; margin-top:0.5rem;">
+          This is a rough guide only. Actual costs depend on your lifestyle, exact neighbourhood and rental choices.
+        </p>
+      `;
+    });
+
+    // --- Agent data (placeholder until you onboard real agents) ---
+    const agents = [
+      {
+        name: "Sara Ahmed",
+        city: "Toronto, ON",
+        type: ["rental", "newcomer"],
+        tagline: "Helps newcomers find rental‑friendly landlords near transit.",
+        languages: ["English", "Urdu", "Arabic"]
+      },
+      {
+        name: "David Chen",
+        city: "Vancouver, BC",
+        type: ["rental", "immigration", "newcomer"],
+        tagline: "Specializes in first‑year rentals for new PRs & students.",
+        languages: ["English", "Mandarin"]
+      },
+      {
+        name: "Marie Dubois",
+        city: "Montreal, QC",
+        type: ["rental", "newcomer"],
+        tagline: "Guides French & English‑speaking newcomers through Quebec rental rules.",
+        languages: ["French", "English"]
+      },
+      {
+        name: "Jaspreet Singh",
+        city: "Calgary, AB",
+        type: ["rental", "immigration"],
+        tagline: "Focus on families relocating for work with immigration‑friendly landlords.",
+        languages: ["English", "Punjabi", "Hindi"]
+      },
+      {
+        name: "Emily O'Connor",
+        city: "Halifax, NS",
+        type: ["rental", "newcomer"],
+        tagline: "Helps students & newcomers find safe, budget‑friendly rentals near campuses.",
+        languages: ["English"]
+      }
+    ];
+
+    const agentCitySelect = document.getElementById("agentCitySelect");
+    const agentList = document.getElementById("agentList");
+    const agentFilterButtons = document.querySelectorAll("[data-agent-filter]");
+
+    // Populate agent city filter
+    const uniqueCities = [...new Set(agents.map((a) => a.city))];
+    uniqueCities.forEach((city) => {
+      const opt = document.createElement("option");
+      opt.value = city;
+      opt.textContent = city;
+      agentCitySelect.appendChild(opt);
+    });
+
+    let currentAgentTypeFilter = "all";
+
+    function renderAgents() {
+      const cityFilter = agentCitySelect.value;
+      agentList.innerHTML = "";
+
+      const filtered = agents.filter((agent) => {
+        const cityMatch = cityFilter === "all" || agent.city === cityFilter;
+        const typeMatch =
+          currentAgentTypeFilter === "all" ||
+          agent.type.includes(currentAgentTypeFilter);
+        return cityMatch && typeMatch;
+      });
+
+      if (filtered.length === 0) {
+        agentList.innerHTML =
+          "<p style='font-size:0.85rem; color:#6b7280;'>No agents match this filter yet. In the future, this is where your paying agents will appear.</p>";
+        return;
+      }
+
+      filtered.forEach((agent) => {
+        const div = document.createElement("div");
+        div.className = "agent-card";
+        div.innerHTML = `
+          <h3>${agent.name}</h3>
+          <p>${agent.city}</p>
+          <p class="agent-tagline">${agent.tagline}</p>
+          <p style="font-size:0.8rem; color:#6b7280;">
+            Focus: ${agent.type.join(", ")}<br/>
+            Languages: ${agent.languages.join(", ")}
+          </p>
+        `;
+        agentList.appendChild(div);
+      });
+    }
+
+    agentCitySelect.addEventListener("change", renderAgents);
+
+    agentFilterButtons.forEach((btn) => {
+      btn.addEventListener("click", () => {
+        currentAgentTypeFilter = btn.getAttribute("data-agent-filter");
+        agentFilterButtons.forEach((b) => (b.style.background = "#e5e7eb"));
+        btn.style.background = "#d1d5db";
+        renderAgents();
+      });
+    });
+
+    renderAgents();
+
+    // --- Simple email capture (front‑end only for now) ---
+    const emailInput = document.getElementById("emailInput");
+    const joinBtn = document.getElementById("joinBtn");
+    const joinMessage = document.getElementById("joinMessage");
+
+    joinBtn.addEventListener("click", () => {
+      const email = emailInput.value.trim();
+      if (!email || !email.includes("@")) {
+        joinMessage.textContent = "Please enter a valid email.";
+        joinMessage.style.color = "#b91c1c";
+        return;
+      }
+
+      // For now, just show a success message.
+      // Later: send this to Supabase, Mailchimp, etc.
+      joinMessage.textContent =
+        "Thanks for joining! We'll send you newcomer & rental updates soon.";
+      joinMessage.style.color = "#047857";
+      emailInput.value = "";
+    });
+  </script>
+</body>
+</html>
